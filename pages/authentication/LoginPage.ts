@@ -36,7 +36,16 @@ export class LoginPage extends BasePage {
      * Verify successful login
      */
     async verifySuccessfulLogin() {
-        await expect(this.page).toHaveURL('https://platform.hubble.build/');
+        // Wait for navigation to complete and URL to change
+        await this.page.waitForURL('https://platform.hubble.build/', { timeout: 90000 });
+        
+        // Wait for the dashboard content to be visible
+        await this.page.waitForSelector('text=Project Directory', { 
+            state: 'visible',
+            timeout: 90000 
+        });
+        
+        // Additional verification
         await expect(this.page.getByText('Project Directory')).toBeVisible();
     }
 

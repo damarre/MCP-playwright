@@ -8,6 +8,16 @@ export class BasePage {
     }
 
     async navigate(path: string) {
-        await this.page.goto(`${path}`);
+        try {
+            await this.page.goto(path, {
+                waitUntil: 'networkidle',
+                timeout: 90000
+            });
+            // Wait for any dynamic content to load
+            await this.page.waitForLoadState('domcontentloaded');
+        } catch (error) {
+            console.error(`Navigation failed to ${path}: ${error.message}`);
+            throw error;
+        }
     }
 }

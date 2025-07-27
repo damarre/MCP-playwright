@@ -7,12 +7,18 @@ export default defineConfig({
   retries: process.env.CI ? 2 : 0,
   workers: process.env.CI ? 1 : undefined,
   reporter: 'html',
+  timeout: 90000, // Global timeout for all tests
   use: {
     baseURL: 'https://platform.hubble.build',
     trace: 'on-first-retry',
     headless: false,
     viewport: { width: 1280, height: 720 },
-    ignoreHTTPSErrors: true
+    ignoreHTTPSErrors: true,
+    navigationTimeout: 90000,
+    actionTimeout: 45000,
+    video: 'retain-on-failure',
+    screenshot: 'only-on-failure',
+    retry: 2
   },
   projects: [
     {

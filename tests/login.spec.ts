@@ -1,24 +1,31 @@
-import { test, expect } from '@playwright/test';
-import { LoginPage } from './pages/LoginPage';
+import { test } from './fixtures';
+import { expect } from '@playwright/test';
 
-test.describe('Hubble Platform Login', () => {
-    let loginPage: LoginPage;
-
-    test.beforeEach(async ({ page }) => {
-        loginPage = new LoginPage(page);
+test.describe('Authentication', () => {
+    test.beforeEach(async ({ loginPage }) => {
         await loginPage.goto();
     });
 
-    test('successful login with valid credentials', async () => {
+    test('should login successfully with valid credentials', async ({ loginPage, dashboardPage }) => {
+        // Login with valid credentials
         await loginPage.login(
-            'qa+prodregcompany2@hubble.build',
-            'CAC@ady.kak3bfd8zcz'
+            process.env.HUBBLE_TEST_EMAIL || 'qa+prodregcompany2@hubble.build',
+            process.env.HUBBLE_TEST_PASSWORD || 'CAC@ady.kak3bfd8zcz'
         );
-        await loginPage.expectSuccessfulLogin();
+
+        // Verify successful login
+        await loginPage.verifySuccessfulLogin();
+        
+        // Additional dashboard verification
+        await dashboardPage.verifyDashboardLoaded();
+        expect(await dashboardPage.getTotalProjects()).toBeDefined();
     });
 
-    test('failed login with invalid credentials', async () => {
+    test('should show error with invalid credentials', async ({ loginPage }) => {
+        // Try to login with invalid credentials
         await loginPage.login('invalid@email.com', 'wrongpassword');
-        await loginPage.expectErrorMessage();
+
+        // Verify failed login
+        await loginPage.verifyFailedLogin();
     });
 });
