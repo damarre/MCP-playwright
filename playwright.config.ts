@@ -11,7 +11,7 @@ export default defineConfig({
   use: {
     baseURL: 'https://platform.hubble.build',
     trace: 'on-first-retry',
-    headless: false,
+    headless: true,
     viewport: { width: 1280, height: 720 },
     ignoreHTTPSErrors: true,
     navigationTimeout: 90000,
