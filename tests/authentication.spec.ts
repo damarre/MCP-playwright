@@ -9,8 +9,8 @@ test.describe('Authentication', () => {
     test('should login successfully with valid credentials', async ({ loginPage, dashboardPage }) => {
         // Login with valid credentials
         await loginPage.login(
-            'qa+prodregcompany2@hubble.build',
-            'CAC@ady.kak3bfd8zcz'
+            process.env.HUBBLE_TEST_EMAIL || '',
+            process.env.HUBBLE_TEST_PASSWORD || ''
         );
 
         // Verify successful login
