@@ -3,6 +3,16 @@
   "version": "1.0.0",
   "description": "Automated tests for Hubble platform login",
   "scripts": {
+    "test": "playwright test --headed",
+    "test:ci": "playwright test",
+    "test:report": "playwright show-report"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.39.0",
+    "@types/node": "^20.8.7": "hubble-login-tests",
+  "version": "1.0.0",
+  "description": "Automated tests for Hubble platform login",
+  "scripts": {
     "test": "playwright test --headed"
   },
   "devDependencies": {
