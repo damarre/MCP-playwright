@@ -12,11 +12,17 @@ mode: 'agent'
   2. Explore 1 key functionality of the site and when finished close the browser.
   3. Implement a Playwright TypeScript test that uses @playwright/test based on message history using Playwright's best practices including role based locators, auto retrying assertions and with no added timeouts unless necessary as Playwright has built in retries and autowaiting if the correct locators and assertions are used.
   4. Please use POM model
+  5. the credentials: 
+    username = qa+xxx <change to correct user>
+    password = CAxxxx <change to correct pass>
+
 - Save generated test file in the tests directory
 - Execute the test file and iterate until the test passes
 - Include appropriate assertions to verify the expected behavior
 - Structure tests properly with descriptive test titles and comments
 - auto retry to explore when it getting failed
+- please use --headed
 
 
-Explore https://automationintesting.online/
+
+Explore https://platform.hubble.build/login
