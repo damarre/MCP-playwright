@@ -1,6 +1,6 @@
-# Hubble Platform Tests
+# MCP Platform Tests
 
-Automated tests for the Hubble platform using Playwright.
+Automated tests for the Hubble platform using Playwright - MCP.
 
 ## Project Structure
 
@@ -60,3 +60,6 @@ Tests are automatically run in GitHub Actions:
 2. Click on the workflow run
 3. Download the playwright-report artifact
 4. Open `index.html` in your browser
+
+## Running Tests
+1. Please check the prompt command for the detail MCP usage
